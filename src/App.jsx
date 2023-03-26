@@ -12,14 +12,16 @@ export default function App() {
   const s = useStates('main', {
     movies: [],
     screenings: [],
-    moviesByCategory: []
+    moviesByCategory: [],
+    categories: []
   });
 
   useEffect(() => {
     (async () => {
       s.movies = await (await fetch('/api/movies')).json();
       s.screenings = await (await fetch('/api/screenings/?sort=time')).json();
-      s.moviesByCategory = await (await fetch('/api/movies_by_category')).json();
+      s.moviesXCategories = await (await fetch('/api/moviesXcategories')).json();
+      s.categories = await (await fetch('/api/categories')).json();
     })();
   }, []);
       

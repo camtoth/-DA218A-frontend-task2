@@ -9,26 +9,30 @@ export default function Filter(props) {
   // that was set in App and contains the movie list
   const s = useStates('main');
 
-  const handleChange = () => {
-    props.setSortedScreenings(s.screenings);
+  const handleChange = (e) => {
+    let category = e.target.value;
+    if(category == 0) {
+        props.setSortedScreenings(s.screenings);
+    }
+    let selectedMovies = [];
+    s.moviesXCategories.forEach(movie => {
+        if(movie.Id === category) {
+            selectedMovies.push(s.movies.find(m => movie.title == m.title));
+        }
+    })
+    let selectedScreenings = [];
+    s.screenings.forEach(screening => {
+
+    })
   }
 
   return <Container>
 
-                <Form.Select onChange={handleChange()}>
-                    <option value = 'all'>All categories</option>
-                    <option value = 'action'>Action</option>
-                    <option value = 'adventure'>adventure</option>
-                    <option value = 'biography'>biography</option>
-                    <option value = 'comedy'>Comedy</option>
-                    <option value = 'crime'>Crime</option>
-                    <option value = 'family'>Family</option>
-                    <option value = 'fantasy'>Fantasy</option>
-                    <option value = 'horror'>Horror</option>
-                    <option value = 'music'>Music</option>
-                    <option value = 'romance'>Romance</option>
-                    <option value = 'scifi'>Sci-Fi</option>
-                    <option value = 'other'>Other</option>
+                <Form.Select onChange={e => {handleChange(e); props.setSelectedCategory(e.target.value)}}>
+                    <option value = '0'> All </option>
+                    {s.categories.map((category) => 
+                        <option value = {category.id}> {category.title}</option>
+                    )}
 
                 </Form.Select>
         </Container>

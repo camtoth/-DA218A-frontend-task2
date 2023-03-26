@@ -13,10 +13,9 @@ export default function Screenings() {
 
   const s = useStates('main');
   const [sortedScreenings, setSortedScreenings] = useState(s.screenings);
-  const [selectedCategory, setSelectedCategory]  = useState("all");
+  const [selectedCategory, setSelectedCategory]  = useState(0);
 
   return <>
-    <h1>{selectedCategory}</h1>
     <Filter selectedCategory = {selectedCategory} setSelectedCategory = {setSelectedCategory} setSortedScreenings = {setSortedScreenings}/>
     {sortedScreenings.map(({ id, time, movieId, auditoriumId }) => <Link
       to={'/movie-detail/' + movieId}>
