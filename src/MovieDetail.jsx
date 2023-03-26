@@ -16,10 +16,6 @@ export default function () {
   const { title, description } = movie;
   const { length, categories, posterImage } = description;
 
-  useEffect(() => {
-    movie.description.length = 'VERY LONG MOVIE!';
-  }, []);
-
   return <div className="movie-detail">
     <h3>{title}</h3>
     <h4>Length: {length} minutes</h4>
