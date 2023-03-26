@@ -1,4 +1,4 @@
-# -DA218A-frontend-task2
+# DA218A-frontend-task2 (Cinema)
 
 A small react project for HKR DA218A Front-end Development Course
 
