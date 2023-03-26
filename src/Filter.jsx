@@ -13,17 +13,22 @@ export default function Filter(props) {
     let category = e.target.value;
     if(category == 0) {
         props.setSortedScreenings(s.screenings);
+    } else {
+        let selectedMoviesIds = [];
+        s.moviesXCategories.forEach(movie => {
+            if(movie.categoryId == category) {
+                selectedMoviesIds.push(movie.movieId);
+            }
+        })
+        console.log(selectedMoviesIds)
+        let selectedScreenings = [];
+        s.screenings.forEach(screening => {
+            if(selectedMoviesIds.includes(screening.movieId)) {
+                selectedScreenings.push(screening);
+            }
+        })
+        props.setSortedScreenings(selectedScreenings);
     }
-    let selectedMovies = [];
-    s.moviesXCategories.forEach(movie => {
-        if(movie.Id === category) {
-            selectedMovies.push(s.movies.find(m => movie.title == m.title));
-        }
-    })
-    let selectedScreenings = [];
-    s.screenings.forEach(screening => {
-
-    })
   }
 
   return <Container>

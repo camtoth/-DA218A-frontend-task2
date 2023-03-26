@@ -9,12 +9,12 @@ import { useState } from 'react';
 
 
 
-export default function Screenings() {
+export default function Screenings(props) {
 
   const s = useStates('main');
-  const [sortedScreenings, setSortedScreenings] = useState(s.screenings);
+  const [sortedScreenings, setSortedScreenings] = useState(props.screenings);
   const [selectedCategory, setSelectedCategory]  = useState(0);
-
+  useEffect(() => setSortedScreenings(props.screenings), [props.screenings])
   return <>
     <Filter selectedCategory = {selectedCategory} setSelectedCategory = {setSelectedCategory} setSortedScreenings = {setSortedScreenings}/>
     {sortedScreenings.map(({ id, time, movieId, auditoriumId }) => <Link

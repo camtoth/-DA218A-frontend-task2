@@ -30,7 +30,7 @@ export default function App() {
     <Routes>
       <Route path="/movies" element={<MovieList />}></Route>
       <Route path="/movie-detail/:id" element={<MovieDetail />} />
-      <Route path="/" element={<Screenings />}></Route>
+      <Route path="/" element={<Screenings screenings = {s.screenings}/>}></Route>
     </Routes>
   </>;
 }
